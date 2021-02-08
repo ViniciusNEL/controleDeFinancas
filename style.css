@@ -1,0 +1,299 @@
+/* Global =============================== */
+
+/* margin:0; para resetar todos os espassamentos externos dos elementos da página;
+   padding:0; para resetar todos os espassamentos internos da página;
+   box-sizing: border-box; eu reseto a caixa a partir da borda
+*/
+
+:root {
+   --dark-blue: #363f5f;
+   --green: #49aa26;
+   --light-green: #3dd705;
+   --red: #e92929;
+}
+
+* {
+   margin:0;
+   padding: 0;
+   box-sizing:border-box ;
+   
+}
+
+html {
+   font-size: 93.75%; /* 93.75% é igual a 15 px, o valor padrão da font é de 16px, ou seja, 100% */
+}
+
+body {
+    background: #f0f2f5;
+    font-family: 'Poppins', sans-serif ;
+}
+
+/*  tricks css,  truque pra esconder na tela sem tirar ele, deixando ele para leitores e tela*/
+.sr-only {
+   position: absolute; /* position absolute é como se pegasse a caixa onde o item esta e posicionasse na frente da caixa pai  */
+   width: 1px;
+   height: 1px;
+   padding: 0;
+   margin: -1px;
+   overflow: hidden; /* some da tela */
+   clip: rect();
+   white-space: nowrap;
+   border-width: 0;
+}
+
+.container {
+   width: min(90vw, 800px);
+   margin: auto; 
+   margin-top: 20px;
+}
+
+/* Titles ============================= */
+h2 {
+   margin-top: 3.2rem; /* Espassamento para o conteúdo de cima */
+   margin-bottom: 0.8rem; /* Espassamento pata o conteudo de baixo */
+   color: var(--dark-blue);
+   font-weight: normal;
+}
+
+/* Links & Buttons ============================= */
+a {
+   color: var(--green);
+   text-decoration: none;
+}
+
+a:hover {
+   color: #3dd705;
+}
+
+button {
+   width: 100%;
+   height: 50px;
+   border: none;
+   color: white;
+   background: var(--green);
+   padding: 0;
+   border-radius: 0.25rem;
+   cursor: pointer;
+}
+
+button:hover {
+   background: var(--light-green);
+}
+
+/* Quero que pegue a caixa onde tem a classe button e a classe new */
+.button.new {
+   display:inline-block; /* A tag de link 'a' é uma tag inline e por isso preciso usar esse display para aplicar a margin-botton,  */
+   margin-bottom: .8rem;
+}
+
+.button.cancel {
+   color: var(--red);
+   border: 2px var(--red) solid;
+   border-radius: 0.25rem;
+   height: 50px;
+   display: flex;
+   align-items: center;
+   justify-content: center;
+   opacity: 0.6;
+}
+
+.button.cancel:hover {
+   opacity: 1; 
+}
+
+/* Header ============================= */
+header{
+    background: #2d4a22;
+    padding: 2rem 0 10rem; /* Medida em cima, direito, baixo e esquerdo*/
+   text-align: center;
+}
+
+#logo{
+   color: #fff;
+   font-weight: 100;
+}
+
+/* Balanço =========================== */
+#balanço {
+   margin-top: -8rem;
+}
+
+#balanço h2 {
+   color: white;
+   margin-top: 0;
+}
+
+/* Cartôes =========================== */
+.cartao {
+   background: white;
+   padding: 1.5rem 2rem;
+   border-radius: 0.25rem;
+   margin-bottom: 2rem;
+   color: var(--dark-blue);
+}
+
+.cartao h3 {
+   font-weight: normal;
+   font-size: 1rem;
+   display: flex; /*O omportamento padrão dos elementos html são um embaixo do outro, com o display flex isso muda pra um do lado do outro */
+   align-items: center; /* antes do align-items eu tinha o h3 desalinhado com a imagem do incone, agora tenho nivelado */
+   justify-content: space-between; /*Coloca um espaço entre os elementos que estão dentro do h3 */
+}
+
+.cartao p {
+   font-size: 2rem;
+   line-height: 3rem;
+   margin-top: 1rem;
+}
+
+.cartao.total {
+   background: var(--green);
+   color: white;
+}
+
+/*Transação ==========================*/
+#transação {
+   display: block;
+   width: 100%;
+   overflow-x: auto; /* Responsividade: overflow significa transborda, cria uma barra de rolagem que sera otimo pra mobile  */
+}
+/* Table =========================== */
+#tabela-dados {
+   width: 100%;
+   border-spacing: 0 0.5rem ; /* Espassamentos da borda vertical da tabela 0 e horizontal 0.5 */
+   color: #969cb3;
+}
+
+table thead tr th:first-child,
+table tbody tr td:first-child {
+   border-radius: 0.25rem 0 0 0.25rem;
+}
+
+table thead tr th:last-child,
+table tbody tr td:last-child {
+   border-radius:  0 0.25rem  0.25rem 0;
+}
+
+table thead th {
+   background: white;
+   font-weight: normal;
+   padding: 1rem 2rem;
+   text-align: left;
+   color: #969cb3;
+}
+
+table tbody tr {
+   opacity: 0.7;
+}
+table tbody tr:hover {
+   opacity: 1;
+}
+
+table tbody td {
+   background: white;
+   padding: 1rem 2rem;
+}
+
+td.descrição {
+   color: var(--dark-blue)
+}
+
+td.renda {
+   color: #12a454;
+}
+
+td.despesa {
+   color: #e92929;
+}
+
+/* Modal =============================*/
+/* Obs: visibility , sumi com minha caixa */
+.modal-overlay {
+   width: 100%;
+   height: 100%;
+
+   background-color: rgb(0,0,0,0.7);
+   position: fixed; /*  position fixada, mais pra alcançar toda tela preciso mostrar que quero essse elemento no top 0, ou seja, no começo*/
+   top: 0;
+   /* organizando os itens dentro dessa caixa */
+   display: flex; 
+   align-items: center;
+   justify-content: center;
+
+   opacity: 0;
+   visibility: hidden; 
+
+   z-index: 999;
+}
+
+/* Quando modal-overlay tiver com  a classe active executa essas propriedades 
+ volttei com a minha caixa */
+.modal-overlay.active {
+   opacity: 1;
+   visibility: visible;
+}
+
+.modal {
+   background: #f0f2f5;
+   padding: 2.4rem;
+}
+
+/* Form =========================== */
+#form {
+   max-width: 500px;
+}
+
+#form h2 {
+   margin-top: 0;
+}
+
+input {
+   border: none;
+   border-radius: 0.2rem;
+   padding: 0.8rem;
+   width: 100%;
+}
+
+.input-grupo {
+   margin-top: 0.8rem;
+}
+
+.input-grupo small {
+   opacity: 0.4;
+}
+
+.input-grupo.acoes {
+   display: flex; /* destravo o dosplay flex (elementos lado a lado) e aplico o espaço entre eles justify-content: space-between  */
+   justify-content: space-between;
+   align-items: center;
+}
+
+.input-grupo.acoes .button,
+.input-grupo.acoes button {
+   width: 48%;
+}
+
+/* Footer =========================== */
+footer{
+   text-align: center;
+   padding: 4rem 0 2rem;
+   color: var(--dark-blue);
+   opacity: 0.6;
+}
+
+/* Responsividade =========================== */
+
+@media(min-width: 800px){ /* A partir de 800 de width aplicar os conceitos abaixo */
+   html {
+      font-size: 87.5%; /* 14px */
+   }
+
+   #balanço {
+      display: grid; /* Só com o grid não adianta iria manter o elementos com conportamento padrão, um embaixo do outro */
+      grid-template-columns: 1fr 1fr 1fr ; /* fez tres colunas e dividiu cada uma de 1 fração lado a lado  */
+      gap: 2rem; /* coloca espaços entre as colunas */
+   }
+}
+
+
+
